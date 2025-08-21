@@ -3,20 +3,31 @@
 
 //Lista de amigos a utilizar
 let amigos = ["Celia", "Lini", "Camila", "Daniel", "Valery"]
-
+/*La siguiente función permite agregar nombres dentro de la lista como
+elemento html y limpiarla antes de agregar nuevos elementos*/ 
 function mostrarAmigos() {
-    // 1.Obtenemos el elemento <ul> que representa una lista desordenada en HTML
-    let obtenerElemento = document.getElementById("listaAmigos");
-    // 2.Limpiar la lista para asegurar que no hallan duplicados
+    let lista = document.getElementById("listaAmigos");
     lista.innerHTML = ""
-    // 3.Iterar sobre el arreglo 
     for (i = 0; i < amigos.length; i++) {
-        // Crear elementos de la lista para cada titulo
        let nuevoElemento = document.createElement("li");
-       // 4. asignamos el nombre y lo creamos agregandolo a la lista <ul>
        nuevoElemento.textContent = amigos[i]
         lista.appendChild(nuevoElemento)
     }
 }
-//llamamos la función
 mostrarAmigos();
+
+/*Esta función permite ingresar un nombre en el campo de texto
+y añadirlo a la lista de amigos creada anteriormente, en este caso 
+usaré querySelector en vez GetElementById para obtener el texto*/ 
+function agregarAmigo() {
+    let ingresarNombre = document.querySelector("#amigo").value;
+    if (ingresarNombre == "") {
+        alert("Por favor, inserte un nombre")
+        return;
+       
+    }
+     amigos.push(ingresarNombre);
+     document.querySelector("#amigo").value = "";
+     mostrarAmigos();
+}
+
